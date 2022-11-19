@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useIsMobile } from '../../../hooks';
 
 const Links = [
   { name: 'Informacje', urlPart: 'info', isMobile: true },
@@ -27,6 +28,7 @@ const Links = [
 
 const NavLink = ({ children, to }: { children: ReactNode; to: string }) => {
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   return (
     <Link
@@ -38,7 +40,7 @@ const NavLink = ({ children, to }: { children: ReactNode; to: string }) => {
         bg: useColorModeValue('gray.200', 'gray.700'),
       }}
       bgColor={
-        location.pathname.includes(to)
+        location.pathname.includes(to) && !isMobile
           ? useColorModeValue('gray.200', 'gray.700')
           : 'none'
       }
@@ -52,6 +54,7 @@ const NavLink = ({ children, to }: { children: ReactNode; to: string }) => {
 
 export const NavBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -65,16 +68,24 @@ export const NavBar = () => {
             onClick={isOpen ? onClose : onOpen}
           />
           <Flex justifyContent="space-between" width="100%">
-            <Flex lineHeight="32px">Logo</Flex>
-            <Flex>
-              {Links.map((link) => (
-                <NavLink key={link.name} to={link.urlPart}>
-                  <Box width="100px" textAlign="center">
-                    {link.name}
-                  </Box>
-                </NavLink>
-              ))}
+            <Flex
+              width={isMobile ? '100%' : 'auto'}
+              lineHeight="32px"
+              justifyContent="center"
+            >
+              Logo
             </Flex>
+            {!isMobile && (
+              <Flex>
+                {Links.map((link) => (
+                  <NavLink key={link.name} to={link.urlPart}>
+                    <Box width="100px" textAlign="center">
+                      {link.name}
+                    </Box>
+                  </NavLink>
+                ))}
+              </Flex>
+            )}
           </Flex>
           <Box width="30px"></Box>
         </Flex>
