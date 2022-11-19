@@ -15,24 +15,18 @@ interface BaseInfoValues {
   weight: number;
 }
 
-const options = [
-  'dupa1',
-  'dupa2',
-  'dupa3',
-  'dupa4',
-  'dupa5',
-  'dupa6',
-  'dupa7',
-  'dupa8',
-  'dupa9',
-  'dupa10',
-];
+interface Option {
+  value: string;
+  label: string;
+  isAllowed: boolean;
+}
 
-const getPromise = () => {
-  return new Promise<number>((resolve, reject) => {
-    resolve(1000);
-  });
-};
+const options = [
+  { value: 'dupa1', label: 'dupa1', isAllowed: true },
+  { value: 'dupa2', label: 'dupa2', isAllowed: true },
+  { value: 'dupa3', label: 'dupa3', isAllowed: true },
+  { value: 'dupa4', label: 'dupa4', isAllowed: true },
+];
 
 export const BaseInfoForm = () => {
   const {
@@ -40,15 +34,19 @@ export const BaseInfoForm = () => {
     register,
     formState: { errors, isSubmitting },
   } = useForm<BaseInfoValues>();
-  const [value, setValue] = useState<Array<string>>([]);
+  const [values, setValues] = useState<Array<string>>([]);
+  const [productsToCheck, setProductsToCheck] = useState<Array<Option>>([]);
 
-  function onSubmit(values: BaseInfoValues) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        getPromise();
-      }, 3000);
-    });
+  console.log('productsToCheck');
+  console.log(productsToCheck);
+
+  function onSubmit(vals: BaseInfoValues) {
+    setProductsToCheck(
+      values.map((value) => {
+        const index = options.findIndex((option) => option.value === value);
+        return options[index];
+      }),
+    );
   }
 
   return (
@@ -98,8 +96,8 @@ export const BaseInfoForm = () => {
       <MultiSelect
         textAlign="left"
         options={options}
-        value={value}
-        onChange={(items) => setValue(items as Array<string>)}
+        value={values}
+        onChange={(items) => setValues(items as Array<string>)}
       />
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Sprawdź
