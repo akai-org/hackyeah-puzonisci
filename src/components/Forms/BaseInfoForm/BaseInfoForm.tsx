@@ -5,9 +5,15 @@ import {
   Input,
   Button,
   FormLabel,
+  Flex,
+  Text,
+  Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { MultiSelect } from 'chakra-multiselect';
+import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
+import { useIsMobile } from '../../../hooks';
+import s from './BaseInfoForm.module.scss';
 
 interface BaseInfoValues {
   firstName: string;
@@ -24,8 +30,8 @@ interface Option {
 const options = [
   { value: 'dupa1', label: 'dupa1', isAllowed: true },
   { value: 'dupa2', label: 'dupa2', isAllowed: true },
-  { value: 'dupa3', label: 'dupa3', isAllowed: true },
-  { value: 'dupa4', label: 'dupa4', isAllowed: true },
+  { value: 'dupa3', label: 'dupa3', isAllowed: false },
+  { value: 'dupa4', label: 'dupa4', isAllowed: false },
 ];
 
 export const BaseInfoForm = () => {
@@ -36,23 +42,51 @@ export const BaseInfoForm = () => {
   } = useForm<BaseInfoValues>();
   const [values, setValues] = useState<Array<string>>([]);
   const [productsToCheck, setProductsToCheck] = useState<Array<Option>>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectError, setSelectError] = useState(false);
 
-  console.log('productsToCheck');
-  console.log(productsToCheck);
+  const isMobile = useIsMobile();
 
   function onSubmit(vals: BaseInfoValues) {
+    setSelectError(false);
     setProductsToCheck(
       values.map((value) => {
         const index = options.findIndex((option) => option.value === value);
         return options[index];
       }),
     );
+    values.length > 0 ? setIsSubmitted(true) : setSelectError(true);
   }
 
   return isSubmitted ? (
-    <div>dupa</div>
+    <Flex flexDirection="column">
+      <Flex flexDirection="column">
+        <Text color="red">
+          <CloseIcon /> Niekompostowalne
+        </Text>
+        <Box>
+          {productsToCheck
+            .filter((product) => !product.isAllowed)
+            .map((item) => (
+              <Box>- {item.value}</Box>
+            ))}
+        </Box>
+      </Flex>
+      <Flex mt="20px" flexDirection="column">
+        <Text color="green">
+          <CheckIcon /> Kompostowalne
+        </Text>
+        <Box>
+          {productsToCheck
+            .filter((product) => product.isAllowed)
+            .map((item) => (
+              <Box>- {item.value}</Box>
+            ))}
+        </Box>
+      </Flex>
+    </Flex>
   ) : (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={isMobile ? s.form : ''}>
       <FormControl isInvalid={Boolean(errors.firstName)}>
         <FormLabel htmlFor="firstName">Imię</FormLabel>
         <Input
@@ -82,6 +116,7 @@ export const BaseInfoForm = () => {
           Miesięczna waga kompostowanych odpadów(kg)
         </FormLabel>
         <Input
+          type="number"
           id="weight"
           {...register('weight', {
             required: 'Wprowadź wagę',
@@ -96,11 +131,18 @@ export const BaseInfoForm = () => {
         Kompostowane rzeczy
       </FormLabel>
       <MultiSelect
+        border="1px solid red"
         textAlign="left"
         options={options}
         value={values}
         onChange={(items) => setValues(items as Array<string>)}
       />
+
+      {selectError && (
+        <Text color="red" fontSize="14px" textAlign="left">
+          Wybierz przynajmniej jedną rzecz
+        </Text>
+      )}
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Sprawdź
       </Button>

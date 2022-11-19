@@ -22,7 +22,7 @@ import { useIsMobile } from '../../../hooks';
 
 const Links = [
   { name: 'Informacje', urlPart: 'info', isMobile: true },
-  { name: 'Przelicznik', urlPart: 'counter', isMobile: true },
+  { name: 'Sprawdź się', urlPart: 'counter', isMobile: true },
   { name: 'Gra', urlPart: 'game', isMobile: false },
 ];
 
