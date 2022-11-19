@@ -1,6 +1,6 @@
 import { Card, CardBody, Text } from '@chakra-ui/react';
 
-export const Game = () => {
+export const GamePage = () => {
   return (
     <Card>
       <CardBody>
