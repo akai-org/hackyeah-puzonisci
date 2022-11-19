@@ -11,5 +11,5 @@ export function useIsMobile() {
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, [window.innerWidth]);
-  return windowSize < 700;
+  return windowSize < 768;
 }

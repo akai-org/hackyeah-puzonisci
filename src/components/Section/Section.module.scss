@@ -1,0 +1,36 @@
+.accent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: "";
+    width: 128px;
+    height: 8px;
+    background-color: gray;
+  }
+}
+
+@media (min-width: 768px) {
+  .accent {
+    display: flex;
+    flex-direction: row;
+
+    &::before {
+      content: "";
+      width: 64px;
+      height: 8px;
+      background-color: gray;
+      margin-right: 20px;
+    }
+
+    &::after {
+      content: "";
+      width: 64px;
+      height: 8px;
+      background-color: gray;
+      margin-left: 20px;
+    }
+  }
+}
