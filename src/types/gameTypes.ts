@@ -3,3 +3,9 @@ export interface ProfitGainerVals {
   time: number;
   requiredAmount: number;
 }
+
+export interface CompostableQuizQuestion {
+  itemName: string;
+  itemImage: string;
+  isCompostable: boolean;
+}
