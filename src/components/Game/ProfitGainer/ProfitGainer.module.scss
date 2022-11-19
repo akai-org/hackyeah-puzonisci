@@ -1,0 +1,18 @@
+.imageWrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 200px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex: 1;
+  & div {
+    margin-top: 0!important;
+  }
+}
