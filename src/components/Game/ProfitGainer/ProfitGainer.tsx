@@ -28,6 +28,8 @@ export interface ProfitGainerProps {
   autoClickCost: number;
   cost: number;
   isBought?: boolean;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ProfitGainer: FC<ProfitGainerProps> = ({
@@ -40,6 +42,8 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   autoClickCost,
   cost,
   isBought = false,
+  isModalOpen,
+  setIsModalOpen,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [internalVertilizer, setInternalVertilizer] = useState(0);
@@ -65,6 +69,9 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
 
   const progress = () => {
     if (isClicked) return;
+    if (Math.random() < 0.05 / speed && !isModalOpen) {
+      setIsModalOpen(true);
+    }
 
     setIsClicked(true);
     const interTmp = setInterval(() => {
