@@ -16,28 +16,17 @@ interface BaseInfoValues {
 }
 
 interface Option {
-  name: string;
-  allowed: boolean;
+  value: string;
+  label: string;
+  isAllowed: boolean;
 }
 
-const options: Array<Option> = [
-  { name: 'dupa1', allowed: true },
-  { name: 'dupa2', allowed: false },
-  { name: 'dupa3', allowed: true },
-  { name: 'dupa4', allowed: true },
-  { name: 'dupa5', allowed: true },
-  { name: 'dupa6', allowed: true },
-  { name: 'dupa7', allowed: true },
-  { name: 'dupa8', allowed: true },
-  { name: 'dupa9', allowed: true },
-  { name: 'dupa10', allowed: true },
+const options = [
+  { value: 'dupa1', label: 'dupa1', isAllowed: true },
+  { value: 'dupa2', label: 'dupa2', isAllowed: true },
+  { value: 'dupa3', label: 'dupa3', isAllowed: true },
+  { value: 'dupa4', label: 'dupa4', isAllowed: true },
 ];
-
-const getPromise = () => {
-  return new Promise<number>((resolve, reject) => {
-    resolve(1000);
-  });
-};
 
 export const BaseInfoForm = () => {
   const {
@@ -45,17 +34,19 @@ export const BaseInfoForm = () => {
     register,
     formState: { errors, isSubmitting },
   } = useForm<BaseInfoValues>();
-  const [value, setValue] = useState<Array<string>>([]);
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [values, setValues] = useState<Array<string>>([]);
+  const [productsToCheck, setProductsToCheck] = useState<Array<Option>>([]);
 
-  function onSubmit(values: BaseInfoValues) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        getPromise();
-      }, 3000);
-      setIsSubmitted(true);
-    });
+  console.log('productsToCheck');
+  console.log(productsToCheck);
+
+  function onSubmit(vals: BaseInfoValues) {
+    setProductsToCheck(
+      values.map((value) => {
+        const index = options.findIndex((option) => option.value === value);
+        return options[index];
+      }),
+    );
   }
 
   return isSubmitted ? (
@@ -107,8 +98,8 @@ export const BaseInfoForm = () => {
       <MultiSelect
         textAlign="left"
         options={options}
-        value={value}
-        onChange={(items) => setValue(items as Array<string>)}
+        value={values}
+        onChange={(items) => setValues(items as Array<string>)}
       />
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Sprawdź
