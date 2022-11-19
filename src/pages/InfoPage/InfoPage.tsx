@@ -7,12 +7,15 @@ const contentSections: Array<SectionProps> = [
     title: 'Na czym polega kompostowanie?',
     content: (
       <>
-        Kompostowanie to proces przetwarzania materii organicznej na nawóz w
-        wyniku naturalnych procesów biochemicznych z udziałem mikroorganizmów.
-        Kompostowanie staje się zauważalnym trendem w Polsce, gdyż jest to
-        świetny sposób na produkcję nawozu - cennego materiału do użyźniania
-        gleby, a także metody zagospodarowania Bio-odpadów, powstających na co
-        dzień w naszych domach i ogrodach.
+        Kompostowanie to organiczny, najprostszy recykling. Bardzo pomocny w
+        gospodarowaniu odpadami. Biomateriał wytworzony przez forę i faunę
+        „powraca” jako cenny kompost. W naturze nic nie ginie. Najwięcej odpadów
+        kompostuje się w Portugalii i Hiszpanii – ok. 17%., w Danii ok. 9% i
+        Francji ok. 8%. W krajach tych wytwarzane komposty znajdują szerokie
+        zastosowanie w produkcji winorośli, ogrodnictwie, warzywnictwie,
+        produkcji rolnej i szkółkarskiej. Również duże ilości kompostów w
+        kompostowniach przydomowych produkują rolnicy indywidualni w Austrii,
+        wykorzystują go do celów nawozowych.
       </>
     ),
     isEven: true,
