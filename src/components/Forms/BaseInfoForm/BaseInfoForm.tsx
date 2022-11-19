@@ -15,17 +15,22 @@ interface BaseInfoValues {
   weight: number;
 }
 
-const options = [
-  'dupa1',
-  'dupa2',
-  'dupa3',
-  'dupa4',
-  'dupa5',
-  'dupa6',
-  'dupa7',
-  'dupa8',
-  'dupa9',
-  'dupa10',
+interface Option {
+  name: string;
+  allowed: boolean;
+}
+
+const options: Array<Option> = [
+  { name: 'dupa1', allowed: true },
+  { name: 'dupa2', allowed: false },
+  { name: 'dupa3', allowed: true },
+  { name: 'dupa4', allowed: true },
+  { name: 'dupa5', allowed: true },
+  { name: 'dupa6', allowed: true },
+  { name: 'dupa7', allowed: true },
+  { name: 'dupa8', allowed: true },
+  { name: 'dupa9', allowed: true },
+  { name: 'dupa10', allowed: true },
 ];
 
 const getPromise = () => {
@@ -41,6 +46,7 @@ export const BaseInfoForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<BaseInfoValues>();
   const [value, setValue] = useState<Array<string>>([]);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   function onSubmit(values: BaseInfoValues) {
     return new Promise((resolve) => {
@@ -48,10 +54,13 @@ export const BaseInfoForm = () => {
         alert(JSON.stringify(values, null, 2));
         getPromise();
       }, 3000);
+      setIsSubmitted(true);
     });
   }
 
-  return (
+  return isSubmitted ? (
+    <div>dupa</div>
+  ) : (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={Boolean(errors.firstName)}>
         <FormLabel htmlFor="firstName">Imię</FormLabel>
