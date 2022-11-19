@@ -46,7 +46,7 @@ export const GamePage = () => {
               updateMoney={setMoney}
               basicUpgradeCost={100}
               updateVertilizer={setVertilizer}
-              internalVals={{ requiredAmount: 5000, time: 200 }}
+              internalVals={{ requiredAmount: 5000, time: 2000 }}
               autoClickCost={100}
             />
             <Box bg="tomato" height="80px"></Box>

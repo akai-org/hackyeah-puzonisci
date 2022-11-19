@@ -34,10 +34,12 @@ export const ProfitGainer: FC<Props> = ({
   const [internalVertilizer, setInternalVertilizer] = useState(0);
   const [inter, setInter] = useState<number | undefined>();
   const [upgradeCost, setUpgradeCost] = useState(basicUpgradeCost);
-  const [multiplier, setMultiplier] = useState(1);
   const [autoClick, setAutoClick] = useState(false);
-  const speed = (internalVals.requiredAmount / internalVals.time) * multiplier;
+  const [speed, setSpeed] = useState(
+    internalVals.requiredAmount / internalVals.time,
+  );
   const autoClickRef = useRef(autoClick);
+  const speedRef = useRef(speed);
 
   const vertilizerRef = useRef(internalVertilizer);
   const intervalRef = useRef(inter);
@@ -46,6 +48,7 @@ export const ProfitGainer: FC<Props> = ({
     vertilizerRef.current = internalVertilizer;
     intervalRef.current = inter;
     autoClickRef.current = autoClick;
+    speedRef.current = speed;
   });
 
   const progress = () => {
@@ -53,7 +56,7 @@ export const ProfitGainer: FC<Props> = ({
 
     setIsClicked(true);
     const interTmp = setInterval(() => {
-      setInternalVertilizer(vertilizerRef.current + speed);
+      setInternalVertilizer(vertilizerRef.current + speedRef.current);
       if (vertilizerRef.current >= internalVals.requiredAmount) {
         updateVertilizer((vertilizer) => {
           if (vertilizerRef.current > internalVals.requiredAmount) {
@@ -68,7 +71,7 @@ export const ProfitGainer: FC<Props> = ({
           progress();
         }
       }
-    }, 10);
+    }, 1);
 
     setInter(interTmp);
   };
@@ -102,9 +105,9 @@ export const ProfitGainer: FC<Props> = ({
             e.stopPropagation();
             updateMoney((money) => money - upgradeCost);
             setUpgradeCost((cost) => cost * 8);
-            setMultiplier((multiplier) => multiplier * 2);
+            setSpeed((speed) => speed * 2);
           }}
-          disabled={money < upgradeCost || isClicked}
+          disabled={money < upgradeCost || (isClicked && !autoClick)}
         >
           Upgrade {upgradeCost}zł
         </Button>
