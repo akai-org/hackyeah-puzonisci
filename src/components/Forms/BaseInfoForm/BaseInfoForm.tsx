@@ -59,7 +59,11 @@ export const BaseInfoForm = () => {
   }
 
   return isSubmitted ? (
-    <Flex flexDirection="column">
+    <Flex
+      flexDirection="column"
+      width={isMobile ? '100vw' : 'auto'}
+      pr={isMobile ? '100px' : ''}
+    >
       <Flex flexDirection="column">
         <Text color="red">
           <CloseIcon /> Niekompostowalne
@@ -68,7 +72,7 @@ export const BaseInfoForm = () => {
           {productsToCheck
             .filter((product) => !product.isAllowed)
             .map((item) => (
-              <Box>- {item.value}</Box>
+              <Box key={item.value}>- {item.value}</Box>
             ))}
         </Box>
       </Flex>
@@ -80,7 +84,7 @@ export const BaseInfoForm = () => {
           {productsToCheck
             .filter((product) => product.isAllowed)
             .map((item) => (
-              <Box>- {item.value}</Box>
+              <Box key={item.value}>- {item.value}</Box>
             ))}
         </Box>
       </Flex>

@@ -14,7 +14,7 @@ const contentSections: Array<SectionProps> = [
     content: (
       <>
         Kompostowanie pozwala nam dbać o środowisko, ponieważ:
-        <ul>
+        <ol style={{ textAlign: 'left' }}>
           <li>
             Redukujemy ilość generowanych odpadów przez oraz koszty ich
             transportu a także zagospodarowania ich - aktywne wdrażanie zasady
@@ -33,91 +33,66 @@ const contentSections: Array<SectionProps> = [
             utrzymując wilgoć, pomagając w ten sposób przetrwać okresy suszy,
             które występują coraz częściej.
           </li>
-        </ul>
+        </ol>
       </>
     ),
     isEven: false,
   },
   {
     title: 'Czy robienie kompostu jest trudne?',
-    content: (
-      <>
-        <p>
-          wytwarzanie kompostu jest łatwe i nie wymaga specjalistycznej wiedzy,
-          a założenie kompostownika możliwe jest nie tylko w ogrodzie, ale
-          również w domu czy na balkonie. Kompostownik można zbudować
-          samodzielnie lub zakupić gotową konstrukcję.
-        </p>
-        <p>
-          Tworząc domowy kompostownik musimy zwrócić uwagę na to, co wkładamy do
-          środka, aby finalny produkt nadawał się do użytku. Należy jednak
-          podkreślić, że prawidłowo konserwowany kompostownik nie wydziela
-          żadnego zapachu.
-        </p>
-      </>
-    ),
+    content:
+      'Wytwarzanie kompostu jest łatwe i nie wymaga specjalistycznej wiedzy, a założenie kompostownika możliwe jest nie tylko w ogrodzie, ale również w domu czy na balkonie. Kompostownik można zbudować samodzielnie lub zakupić gotową konstrukcję. Tworząc domowy kompostownik musimy zwrócić uwagę na to, co wkładamy do środka, aby finalny produkt nadawał się do użytku. Należy jednak podkreślić, że prawidłowo konserwowany kompostownik nie wydziela żadnego zapachu',
     isEven: true,
   },
   {
-    title: 'Co można wrzucać do kompostownika:',
+    title: 'Codzienne odpady nadające się do kompostowania:',
     content: (
-      <>
-        <ul>
-          <li>Skoszona trawa, liście,</li>
-          <li>zwiędłe rośliny,</li>
-          <li>czerstwe pieczywo,</li>
-          <li>
-            Odpadki kuchenne pokroju obierek, pozostałości owoców i warzyw,
-            skorupek jajek,{' '}
-          </li>
-          <li>
-            Czysty nie zapisany papier lub tektura np. ręczniki papierowe,
-          </li>
-          <li>fusy po kawie/herbacie.</li>
-        </ul>
-      </>
+      <ol style={{ textAlign: 'left' }}>
+        <li>Skoszona trawa, liście oraz zwiędłe rośliny</li>
+        <li>
+          Odpadki kuchenne pokroju obierek, pozostałości owoców i warzyw,
+          skorupek jajek czy czerstwe pieczywo,
+        </li>
+        <li>Fusy po kawie/herbacie.</li>
+        <li>Tektura, czysty nie zapisany papier lub np. ręczniki papierowe,</li>
+      </ol>
     ),
     isEven: false,
   },
   {
-    title: 'Czego nie powinniśmy wrzucać do kompostownika:',
+    title: 'Codzienne odpady NIE nadające się do kompostowania:',
     content: (
-      <>
-        <ul>
-          <li>zepsutego jedzenia</li>
-          <li>
-            odpady pochodzenia roślinnego, które mogą być skażone, np. chwasty
-            środkami ochrony roślin lub skórki z owoców cytrusowych, które
-            zawierają konserwanty,
-          </li>
-          <li>
-            chwasty, które stworzyły nasiona (nasiona przetrwają w kompoście i
-            wykiełkują w glebie pokrytej kompostem),
-          </li>
-          <li>
-            Odpadków kuchennych pokroju mięsa, kości, tłuszczu, nabiału lub
-            całych jajek, które mogą generować nieprzyjemny odór,
-          </li>
-          <li>
-            Produktów plastikowych, metalowych, ceramicznych, szkła czy tkanin,
-            które nie nadają do do kompostowania,
-          </li>
-          <li>
-            części chorych roślin lub rośliny zaatakowanych przez pasożyty
-            (zarodniki grzybów lub jaja pasożytów, które mogą przetrwać proces
-            kompostowania i zostać ponownie wprowadzone do gleby),
-          </li>
-          <li>zepsute jedzenie</li>
-          <li>gleby, żwiru, kamieni</li>
-          <li>
-            igły sosnowe – długo się rozkładają, wydłużając czas potrzebny do
-            wytwarzania kompostu,
-          </li>
-          <li>
-            odchodów zwierzęcych, żwirku dla kotów (ze względów sanitarnych).
-          </li>
-        </ul>
-      </>
+      <ol style={{ textAlign: 'left' }}>
+        <li>Zepsutege jedzenie</li>
+        <li>
+          Odpady pochodzenia roślinnego, które mogą być skażone, np. chwasty
+          środkami ochrony roślin lub skórki z owoców cytrusowych, które
+          zawierają konserwanty,
+        </li>
+        <li>
+          Części chorych roślin lub rośliny zaatakowanych przez pasożyty
+          (zarodniki grzybów lub jaja pasożytów, które mogą przetrwać proces
+          kompostowania i zostać ponownie wprowadzone do gleby),
+        </li>
+        <li>
+          Chwasty, które stworzyły nasiona (nasiona przetrwają w kompoście i
+          wykiełkują w glebie pokrytej kompostem),
+        </li>
+        <li>
+          Igły sosnowe – długo się rozkładają, wydłużając czas potrzebny do
+          wytwarzania kompostu,
+        </li>
+        <li>Gleby, żwir czy kamienie</li>
+        <li>
+          Odpady kuchenne, np. mięsa, kości, tłuszcz, nabiał lub całe jajeka,
+          które mogą generować nieprzyjemny zapach,
+        </li>
+        <li>
+          Produkty plastikowe, metalowe, ceramiczne, szklane czy stworzone z
+          tkanin.
+        </li>
+        <li>Odchody zwierzęce, żwirek dla kotów (ze względów sanitarnych).</li>
+      </ol>
     ),
     isEven: true,
   },
