@@ -5,7 +5,6 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   SimpleGrid,
@@ -25,10 +24,12 @@ import kaczynski from '../../../public/kaczynski.jpg';
 import full from '../../../public/full.jpeg';
 import { CompostableQuizQuestion } from '../../types/gameTypes';
 import pawel from '../../../public/pawel.webp';
+import { shuffle } from 'lodash';
 
 const moneyPerVertilizer = 1;
+const quizPoints = 10000;
 
-const questons: CompostableQuizQuestion[] = [
+const questions: CompostableQuizQuestion[] = [
   { isCompostable: true, itemName: 'Kaczyński', itemImage: kaczynski },
   { isCompostable: false, itemName: 'mocny full', itemImage: full },
   { isCompostable: true, itemName: 'Pan Paweł', itemImage: pawel },
@@ -37,7 +38,21 @@ const questons: CompostableQuizQuestion[] = [
 export const GamePage = () => {
   const [vertilizer, setVertilizer] = useState(1000);
   const [money, setMoney] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [shuffledQuestions, setShuffledQuestions] = useState<
+    CompostableQuizQuestion[]
+  >(shuffle(questions));
+  const [index, setIndex] = useState(0);
+
+  const setNextIndex = () => {
+    setIndex((index) => {
+      if (index + 1 === shuffledQuestions.length) {
+        setShuffledQuestions(shuffle(questions));
+        return 0;
+      }
+      return index + 1;
+    });
+  };
 
   const gainers: ProfitGainerProps[] = [
     {
@@ -50,6 +65,8 @@ export const GamePage = () => {
       updateVertilizer: setVertilizer,
       cost: 0,
       isBought: true,
+      isModalOpen,
+      setIsModalOpen,
     },
     {
       img: kiepski,
@@ -60,12 +77,29 @@ export const GamePage = () => {
       basicUpgradeCost: 400,
       updateVertilizer: setVertilizer,
       cost: 10000,
+      isModalOpen,
+      setIsModalOpen,
     },
   ];
 
   const transferVertilizer = () => {
     setMoney((money) => money + vertilizer * moneyPerVertilizer);
     setVertilizer(0);
+  };
+
+  const handleQuizAnswer = (userChoice: boolean) => {
+    if (userChoice === shuffledQuestions[index].isCompostable) {
+      setVertilizer((vertilizer) => vertilizer + quizPoints);
+    } else {
+      setVertilizer((vertilizer) => {
+        if (vertilizer - quizPoints < 0) {
+          return 0;
+        }
+        return vertilizer - quizPoints;
+      });
+    }
+    setNextIndex();
+    setIsModalOpen(false);
   };
 
   return (
@@ -112,14 +146,17 @@ export const GamePage = () => {
           <ModalHeader>Czy ten przedmiot jest kompostowalny?</ModalHeader>
           <ModalBody>
             <Stack>
-              <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
-              <Text></Text>
+              <Image
+                src={shuffledQuestions[index].itemImage}
+                alt="Dan Abramov"
+              />
+              <Text>{shuffledQuestions[index].itemName}</Text>
+            </Stack>
+            <Stack direction="row" justifyContent="center" spacing={4}>
+              <Button onClick={() => handleQuizAnswer(true)}>Tak</Button>
+              <Button onClick={() => handleQuizAnswer(false)}>Nie</Button>
             </Stack>
           </ModalBody>
-
-          <ModalFooter>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
