@@ -4,43 +4,42 @@ import { Box } from '@chakra-ui/react';
 //TODO: Robert fill the sections with real content
 const contentSections: Array<SectionProps> = [
   {
-    title: 'What is Composting?  ',
+    title: 'Na czym polega kompostowanie?',
     content: (
       <>
-        {' '}
-        is the processing of organic matter into compost in the course of
-        natural biochemical processes with the participation of microorganisms.
-        its becoming a noticeable trend in Poland, as it is a grat way to
-        produce compost - a valuable material for fertilizing the soil, as well
-        as a method for managing organic waste (bio), generated each day at our
-        homes and gardens.
+        Kompostowanie to proces przetwarzania materii organicznej na nawóz w
+        wyniku naturalnych procesów biochemicznych z udziałem mikroorganizmów.
+        Kompostowanie staje się zauważalnym trendem w Polsce, gdyż jest to
+        świetny sposób na produkcję nawozu - cennego materiału do użyźniania
+        gleby, a także metody zagospodarowania Bio-odpadów, powstających na co
+        dzień w naszych domach i ogrodach.
       </>
     ),
     isEven: true,
   },
   {
-    title: 'Why is composting so important?',
+    title: 'Dlaczego robienie kompostu jest takie ważne?',
     content: (
       <>
-        Composting waste allows us to protect the environment, because:
+        Kompostowanie pozwala nam dbać o środowisko, ponieważ:
         <ul>
           <li>
-            we reduce the amount of generated waste and the cost of their
-            transport and management in installations – the active
-            implementation of the ‘zero waste’ principle,
+            Redukujemy ilość generowanych odpadów przez oraz koszty ich
+            transportu a także zagospodarowania ich - aktywne wdrażanie zasady
+            “zero waste”
           </li>
           <li>
-            we reduce the amount of methane generated in landfills due to the
-            decomposing waste, which causes global warming when getting into the
-            atmosphere,
+            Zmniejszamy ilość metanu powstającego na składowiskach w wyniku
+            rozkładających się odpadów, który przyczynia się do globalnego
+            ocieplenia uciekają do atmosfery.
           </li>
           <li>
-            it allows us to obtain a natural and free fertilizer which is safe
-            for humans and the environment – using it makes garden plants grow
-            better, to increase the harvest of vegetables; moreover, compost
-            limits the development of weeds and helps the soil to maintain
-            moisture, thus helping to sustain the periods of drought which occur
-            increasingly more often.
+            pozwala nam to na uzyskanie naturalnego i darmowego nawozu, który
+            jest bezpieczny dla ludzi i środowiska a także korzystanie z niego
+            sprawia, że rośliny ogrodowe lepiej rosną, co zwiększa plony,
+            ponadto kompost ogranicza rozwój chwastów i wspomaga glebę
+            utrzymując wilgoć, pomagając w ten sposób przetrwać okresy suszy,
+            które występują coraz częściej.
           </li>
         </ul>
       </>
@@ -48,81 +47,82 @@ const contentSections: Array<SectionProps> = [
     isEven: false,
   },
   {
-    title: 'Is composting hard?',
+    title: 'Czy robienie kompostu jest trudne?',
     content: (
       <>
-        Independent generation of compost is easy and it does not require
-        specialist knowledge, while setting up a composter is possible not only
-        in a garden, but it can also be done at home or on the balcony. A
-        composter can be built independently or we can purchase a ready
-        construction. When creating a home composter, we must pay attention to
-        what we put inside to make sure that the final product is usable. It
-        must be stressed however that a properly maintained composter does not
-        generate any odour.
+        <p>
+          wytwarzanie kompostu jest łatwe i nie wymaga specjalistycznej wiedzy,
+          a założenie kompostownika możliwe jest nie tylko w ogrodzie, ale
+          również w domu czy na balkonie. Kompostownik można zbudować
+          samodzielnie lub zakupić gotową konstrukcję.
+        </p>
+        <p>
+          Tworząc domowy kompostownik musimy zwrócić uwagę na to, co wkładamy do
+          środka, aby finalny produkt nadawał się do użytku. Należy jednak
+          podkreślić, że prawidłowo konserwowany kompostownik nie wydziela
+          żadnego zapachu.
+        </p>
       </>
     ),
     isEven: true,
   },
   {
-    title: 'What can be composted?',
+    title: 'Co można wrzucać do kompostownika:',
     content: (
       <>
         <ul>
+          <li>Skoszona trawa, liście,</li>
+          <li>zwiędłe rośliny,</li>
+          <li>czerstwe pieczywo,</li>
           <li>
-            kitchen waste, for instance peelings, leftover vegetables and fruit,
-            eggshells, coffee/tea grounds, stale bread,
+            Odpadki kuchenne pokroju obierek, pozostałości owoców i warzyw,
+            skorupek jajek,{' '}
           </li>
-          <li>leaves, sprouts, plant stems, </li>
-          <li>cut grass,</li>
-          <li>tree bark and fine branches, hay, </li>
-          <li>withered flowers and pot plants, </li>
           <li>
-            unprinted and soft paper/cardboard (i.e. paper for wrapping food,
-            tissues, paper towels)
+            Czysty nie zapisany papier lub tektura np. ręczniki papierowe,
           </li>
+          <li>fusy po kawie/herbacie.</li>
         </ul>
       </>
     ),
     isEven: false,
   },
   {
-    title: 'What should not be placed in a composter:',
+    title: 'Czego nie powinniśmy wrzucać do kompostownika:',
     content: (
       <>
         <ul>
+          <li>zepsutego jedzenia</li>
           <li>
-            materials such as ceramics, plastics, metals, glass or fabric – they
-            are not composted
+            odpady pochodzenia roślinnego, które mogą być skażone, np. chwasty
+            środkami ochrony roślin lub skórki z owoców cytrusowych, które
+            zawierają konserwanty,
           </li>
           <li>
-            organic matter which may contain chemicals, such as printed paper or
-            newspapers, empty cardboard beverage packagings, painted and
-            impregnated wood,
+            chwasty, które stworzyły nasiona (nasiona przetrwają w kompoście i
+            wykiełkują w glebie pokrytej kompostem),
           </li>
           <li>
-            kitchen waste such as meat, bones, fat, dairy or whole eggs which
-            generate unpleasant odour when decomposing,
-          </li>
-          <li>animal faeces, cat litter (for sanitary reasons),</li>
-          <li>spoiled food,</li>
-          <li>soil, gravel, stones,</li>
-          <li>
-            parts of diseased plants or plants attacked by parasites (mushroom
-            spores or parasitic eggs can survive the composting process and be
-            reintroduced to the soil)
+            Odpadków kuchennych pokroju mięsa, kości, tłuszczu, nabiału lub
+            całych jajek, które mogą generować nieprzyjemny odór,
           </li>
           <li>
-            weeds which have created seds (the seeds are going to survive in the
-            compost and sprout in soil covered in compost)
+            Produktów plastikowych, metalowych, ceramicznych, szkła czy tkanin,
+            które nie nadają do do kompostowania,
           </li>
           <li>
-            thick branches and pine needles – they decompose for a long time,
-            extending the time needed for generating compost,
+            części chorych roślin lub rośliny zaatakowanych przez pasożyty
+            (zarodniki grzybów lub jaja pasożytów, które mogą przetrwać proces
+            kompostowania i zostać ponownie wprowadzone do gleby),
+          </li>
+          <li>zepsute jedzenie</li>
+          <li>gleby, żwiru, kamieni</li>
+          <li>
+            igły sosnowe – długo się rozkładają, wydłużając czas potrzebny do
+            wytwarzania kompostu,
           </li>
           <li>
-            plant-based waste which may be contaminated, such as weed with plant
-            protection products or peelings from citrus fruits which contain
-            preservatives.
+            odchodów zwierzęcych, żwirku dla kotów (ze względów sanitarnych).
           </li>
         </ul>
       </>
