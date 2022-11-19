@@ -44,6 +44,7 @@ export const GamePage = () => {
               img={bezi}
               upgrades={[]}
               updateVertilizer={setVertilizer}
+              internalVals={{ requiredAmount: 5000, time: 20 }}
             />
             <Box bg="tomato" height="80px"></Box>
             <Box bg="tomato" height="80px"></Box>
