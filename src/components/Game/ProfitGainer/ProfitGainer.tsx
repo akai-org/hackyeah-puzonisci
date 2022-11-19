@@ -8,10 +8,17 @@ import {
   useState,
   MouseEvent,
 } from 'react';
-import { Avatar, Button, Card, Progress, Stack } from '@chakra-ui/react';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  Progress,
+  Stack,
+} from '@chakra-ui/react';
 import styles from './ProfitGainer.module.scss';
 
-interface Props {
+export interface ProfitGainerProps {
   img: string;
   basicUpgradeCost: number;
   updateVertilizer: Dispatch<SetStateAction<number>>;
@@ -19,9 +26,11 @@ interface Props {
   updateMoney: Dispatch<SetStateAction<number>>;
   money: number;
   autoClickCost: number;
+  cost: number;
+  isBought?: boolean;
 }
 
-export const ProfitGainer: FC<Props> = ({
+export const ProfitGainer: FC<ProfitGainerProps> = ({
   img,
   updateVertilizer,
   basicUpgradeCost,
@@ -29,6 +38,8 @@ export const ProfitGainer: FC<Props> = ({
   updateMoney,
   money,
   autoClickCost,
+  cost,
+  isBought = false,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [internalVertilizer, setInternalVertilizer] = useState(0);
@@ -40,6 +51,7 @@ export const ProfitGainer: FC<Props> = ({
   );
   const autoClickRef = useRef(autoClick);
   const speedRef = useRef(speed);
+  const [isBoughtState, setIsBoughtState] = useState(isBought);
 
   const vertilizerRef = useRef(internalVertilizer);
   const intervalRef = useRef(inter);
@@ -84,7 +96,7 @@ export const ProfitGainer: FC<Props> = ({
     progress();
   };
 
-  return (
+  return isBoughtState ? (
     <Card
       direction={{ base: 'column', sm: 'row' }}
       overflow="hidden"
@@ -119,5 +131,16 @@ export const ProfitGainer: FC<Props> = ({
         Upgrade ({autoClickCost}zł)
       </Button>
     </Card>
-  );
+  ) : money >= cost ? (
+    <Card>
+      <CardBody
+        onClick={() => {
+          setIsBoughtState(true);
+          updateMoney((money) => money - cost);
+        }}
+      >
+        Buy for {cost}zł
+      </CardBody>
+    </Card>
+  ) : null;
 };
