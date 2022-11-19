@@ -6,6 +6,7 @@ import {
   useEffect,
   useRef,
   useState,
+  MouseEvent,
 } from 'react';
 import { Avatar, Button, Card, Progress, Stack } from '@chakra-ui/react';
 import styles from './ProfitGainer.module.scss';
@@ -14,27 +15,29 @@ interface Props {
   img: string;
   basicUpgradeCost: number;
   updateVertilizer: Dispatch<SetStateAction<number>>;
-  isAutoClicking?: boolean;
   internalVals: ProfitGainerVals;
   updateMoney: Dispatch<SetStateAction<number>>;
   money: number;
+  autoClickCost: number;
 }
 
 export const ProfitGainer: FC<Props> = ({
-  isAutoClicking = false,
   img,
   updateVertilizer,
   basicUpgradeCost,
   internalVals,
   updateMoney,
   money,
+  autoClickCost,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [internalVertilizer, setInternalVertilizer] = useState(0);
   const [inter, setInter] = useState<number | undefined>();
   const [upgradeCost, setUpgradeCost] = useState(basicUpgradeCost);
   const [multiplier, setMultiplier] = useState(1);
+  const [autoClick, setAutoClick] = useState(false);
   const speed = (internalVals.requiredAmount / internalVals.time) * multiplier;
+  const autoClickRef = useRef(autoClick);
 
   const vertilizerRef = useRef(internalVertilizer);
   const intervalRef = useRef(inter);
@@ -42,6 +45,7 @@ export const ProfitGainer: FC<Props> = ({
   useEffect(() => {
     vertilizerRef.current = internalVertilizer;
     intervalRef.current = inter;
+    autoClickRef.current = autoClick;
   });
 
   const progress = () => {
@@ -60,11 +64,23 @@ export const ProfitGainer: FC<Props> = ({
         setInternalVertilizer(0);
         clearInterval(intervalRef.current);
         setIsClicked(false);
+        if (autoClickRef.current) {
+          progress();
+        }
       }
     }, 10);
 
     setInter(interTmp);
   };
+
+  const turnOnAutoClick = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    if (money < autoClickCost) return;
+    updateMoney(money - autoClickCost);
+    setAutoClick(true);
+    progress();
+  };
+
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -93,6 +109,12 @@ export const ProfitGainer: FC<Props> = ({
           Upgrade {upgradeCost}zł
         </Button>
       </Stack>
+      <Button
+        disabled={autoClick || money < autoClickCost}
+        onClick={(e) => turnOnAutoClick(e)}
+      >
+        Upgrade ({autoClickCost}zł)
+      </Button>
     </Card>
   );
 };
