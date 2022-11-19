@@ -42,9 +42,12 @@ export const GamePage = () => {
           <SimpleGrid columns={2} spacing={3} className={styles.profitGainers}>
             <ProfitGainer
               img={bezi}
-              upgrades={[]}
+              money={money}
+              updateMoney={setMoney}
+              basicUpgradeCost={100}
               updateVertilizer={setVertilizer}
-              internalVals={{ requiredAmount: 5000, time: 200 }}
+              internalVals={{ requiredAmount: 5000, time: 2000 }}
+              autoClickCost={100}
             />
             <Box bg="tomato" height="80px"></Box>
             <Box bg="tomato" height="80px"></Box>
