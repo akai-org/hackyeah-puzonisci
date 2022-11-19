@@ -1,9 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import s from './Section.module.scss';
 
 export interface SectionProps {
-  content: string;
+  content: ReactNode;
   isEven: boolean;
   title?: string;
 }
@@ -19,9 +19,13 @@ export const Section: FC<SectionProps> = ({ title, content, isEven }) => {
       <Text className={s.accent} fontSize="35px" mx="auto" fontWeight="bold">
         {title}
       </Text>
-      <Text mt="10px" fontSize="16px">
-        {content}
-      </Text>
+      {typeof content === 'string' ? (
+        <Text mt="10px" fontSize="16px">
+          {content}
+        </Text>
+      ) : (
+        content
+      )}
     </Flex>
   );
 };
