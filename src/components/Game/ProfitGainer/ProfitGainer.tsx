@@ -43,24 +43,18 @@ export const ProfitGainer: FC<Props> = ({
 
     setIsClicked(true);
     const interTmp = setInterval(() => {
-      console.log('time');
       setInternalVertilizer((vertilizer) => vertilizerRef.current + speed);
       if (vertilizerRef.current >= internalVals.requiredAmount) {
-        updateVertilizer((vertilizer) => vertilizer + vertilizerRef.current);
+        updateVertilizer((vertilizer) => vertilizerRef.current + vertilizer);
         setInternalVertilizer(0);
-        console.log('goal reached');
-        if (intervalRef.current) {
-          console.log('cleared');
-          clearInterval(intervalRef.current);
-          setIsClicked(false);
-          setInter(undefined);
-          intervalRef.current = undefined;
-        }
+        clearInterval(intervalRef.current);
+        setIsClicked(false);
       }
-    }, 1);
+    }, 10);
 
     setInter(interTmp);
   };
+  console.log((vertilizerRef.current / internalVals.requiredAmount) * 100);
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -74,7 +68,7 @@ export const ProfitGainer: FC<Props> = ({
         <Progress
           colorScheme="green"
           height="32px"
-          value={internalVertilizer / internalVals.requiredAmount}
+          value={(internalVertilizer / internalVals.requiredAmount) * 100}
         />
         <Progress colorScheme="blue" height="32px" value={20} />
       </Stack>
