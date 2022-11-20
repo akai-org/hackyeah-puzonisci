@@ -12,7 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import styles from './GamePage.module.scss';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ProfitGainer,
   ProfitGainerProps,
@@ -30,7 +30,7 @@ import {
   SiGitea,
 } from 'react-icons/all';
 
-const moneyPerVertilizer = 0.4;
+const moneyPerVertilizer = 0.8;
 const quizPoints = 5000;
 
 const questions: CompostableQuizQuestion[] = [
@@ -59,6 +59,12 @@ export const GamePage = () => {
     CompostableQuizQuestion[]
   >(shuffle(questions));
   const [index, setIndex] = useState(0);
+  const [interval, setInterval] = useState(Math.random() * 100000);
+  const intervalRef = useRef(interval);
+
+  useEffect(() => {
+    intervalRef.current = interval;
+  });
 
   const setNextIndex = () => {
     setIndex((index) => {
@@ -76,14 +82,12 @@ export const GamePage = () => {
       icon: <IoLeafSharp />,
       autoClickCost: 500,
       money,
-      internalVals: { time: 100, requiredAmount: 5 },
+      internalVals: { time: 100, requiredAmount: 30 },
       updateMoney: setMoney,
       basicUpgradeCost: 10,
       updateVertilizer: setVertilizer,
       cost: 0,
       isBought: true,
-      isModalOpen,
-      setIsModalOpen,
     },
     {
       name: 'branch',
@@ -95,8 +99,6 @@ export const GamePage = () => {
       basicUpgradeCost: 20,
       updateVertilizer: setVertilizer,
       cost: 900,
-      isModalOpen,
-      setIsModalOpen,
     },
     {
       name: 'tea',
@@ -108,8 +110,6 @@ export const GamePage = () => {
       basicUpgradeCost: 400,
       updateVertilizer: setVertilizer,
       cost: 10000,
-      isModalOpen,
-      setIsModalOpen,
     },
     {
       name: 'carrot',
@@ -121,8 +121,6 @@ export const GamePage = () => {
       basicUpgradeCost: 400,
       updateVertilizer: setVertilizer,
       cost: 10000,
-      isModalOpen,
-      setIsModalOpen,
     },
     {
       name: 'paper',
@@ -134,8 +132,6 @@ export const GamePage = () => {
       basicUpgradeCost: 400,
       updateVertilizer: setVertilizer,
       cost: 10000,
-      isModalOpen,
-      setIsModalOpen,
     },
     {
       name: 'egg',
@@ -147,8 +143,6 @@ export const GamePage = () => {
       basicUpgradeCost: 400,
       updateVertilizer: setVertilizer,
       cost: 10000,
-      isModalOpen,
-      setIsModalOpen,
     },
   ];
 
@@ -171,6 +165,13 @@ export const GamePage = () => {
     setNextIndex();
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsModalOpen(true);
+      setInterval(Math.random() * 100000);
+    }, intervalRef.current);
+  }, [interval]);
 
   return (
     <>
