@@ -29,6 +29,6 @@ body {
   width: 100%;
 }
 
-div[role="progressbar"] {
-  background-color: #895335;
+div[role="progressbar"], #twoja-stara {
+  background-color: #895335!important;
 }

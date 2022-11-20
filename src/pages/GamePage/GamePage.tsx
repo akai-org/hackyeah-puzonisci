@@ -10,7 +10,6 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Image,
 } from '@chakra-ui/react';
 import styles from './GamePage.module.scss';
 import { useState } from 'react';
@@ -18,14 +17,13 @@ import {
   ProfitGainer,
   ProfitGainerProps,
 } from '../../components/Game/ProfitGainer/ProfitGainer';
-import kaczynski from '../../../public/kaczynski.jpg';
-import full from '../../../public/full.jpeg';
 import { CompostableQuizQuestion } from '../../types/gameTypes';
-import pawel from '../../../public/pawel.webp';
 import { shuffle } from 'lodash';
 import {
   GiCarrot,
   GiLightningBranches,
+  GiSausage,
+  IoBeerSharp,
   IoEggOutline,
   IoLeafSharp,
   RiFilePaper2Line,
@@ -33,12 +31,24 @@ import {
 } from 'react-icons/all';
 
 const moneyPerVertilizer = 0.4;
-const quizPoints = 500;
+const quizPoints = 5000;
 
 const questions: CompostableQuizQuestion[] = [
-  { isCompostable: true, itemName: 'Kaczyński', itemImage: kaczynski },
-  { isCompostable: false, itemName: 'mocny full', itemImage: full },
-  { isCompostable: true, itemName: 'Pan Paweł', itemImage: pawel },
+  {
+    isCompostable: true,
+    itemName: 'marchewka',
+    itemIcon: <GiCarrot fontSize={50} />,
+  },
+  {
+    isCompostable: false,
+    itemName: 'piwo',
+    itemIcon: <IoBeerSharp fontSize={50} />,
+  },
+  {
+    isCompostable: false,
+    itemName: 'kiełbasa',
+    itemIcon: <GiSausage fontSize={50} />,
+  },
 ];
 
 export const GamePage = () => {
@@ -64,9 +74,9 @@ export const GamePage = () => {
     {
       name: 'leaf',
       icon: <IoLeafSharp />,
-      autoClickCost: 1000,
+      autoClickCost: 500,
       money,
-      internalVals: { time: 1000, requiredAmount: 50 },
+      internalVals: { time: 100, requiredAmount: 5 },
       updateMoney: setMoney,
       basicUpgradeCost: 10,
       updateVertilizer: setVertilizer,
@@ -174,7 +184,7 @@ export const GamePage = () => {
               <Button
                 onClick={transferVertilizer}
                 className={styles.transferVertilizer}
-                colorScheme="green"
+                id="twoja-stara"
               >
                 Transfer to money
               </Button>
@@ -205,12 +215,11 @@ export const GamePage = () => {
         <ModalContent>
           <ModalHeader>Czy ten przedmiot jest kompostowalny?</ModalHeader>
           <ModalBody>
-            <Stack>
-              <Image
-                src={shuffledQuestions[index].itemImage}
-                alt="Dan Abramov"
-              />
-              <Text>{shuffledQuestions[index].itemName}</Text>
+            <Stack alignItems="center">
+              {shuffledQuestions[index].itemIcon}
+              <Text className={styles.modalText}>
+                {shuffledQuestions[index].itemName}
+              </Text>
             </Stack>
             <Stack direction="row" justifyContent="center" spacing={4}>
               <Button onClick={() => handleQuizAnswer(true)}>Tak</Button>
