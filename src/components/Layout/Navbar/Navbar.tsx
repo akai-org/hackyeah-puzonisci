@@ -2,24 +2,15 @@ import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
-  HStack,
   Link,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
   Stack,
   Image,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIsMobile } from '../../../hooks';
 
 const Links = [
@@ -83,7 +74,7 @@ export const NavBar = () => {
                 alt={'dupa'}
               />
               <Text
-                fontSize="40px"
+                fontSize={isMobile ? '30px' : '40px'}
                 ml="10px"
                 lineHeight="60px"
                 fontWeight="bold"

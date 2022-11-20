@@ -10,7 +10,7 @@ export const CountPage = () => {
           <BaseInfoForm />
         </Box>
       }
-      isEven={false}
+      isEven={true}
     />
   );
 };

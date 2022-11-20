@@ -62,7 +62,7 @@ const options = [
   },
   {
     value: 'Rośliny skażone środkami chemicznymi ',
-    label: 'rośliny skażone środkami chemicznymi',
+    label: 'Rośliny skażone środkami chemicznymi',
     isAllowed: false,
   },
 ];
@@ -127,6 +127,7 @@ export const BaseInfoForm = () => {
       <FormControl isInvalid={Boolean(errors.firstName)}>
         <FormLabel htmlFor="firstName">Imię</FormLabel>
         <Input
+          bgColor="white"
           id="firstName"
           {...register('firstName', {
             required: 'Wprowadź imię',
@@ -139,6 +140,7 @@ export const BaseInfoForm = () => {
       <FormControl mt="20px" isInvalid={Boolean(errors.lastName)}>
         <FormLabel htmlFor="lastName">Nazwisko</FormLabel>
         <Input
+          bgColor="white"
           id="lastName"
           {...register('lastName', {
             required: 'Wprowadź nawisko',
@@ -153,6 +155,7 @@ export const BaseInfoForm = () => {
           Miesięczna waga kompostowanych odpadów(kg)
         </FormLabel>
         <Input
+          bgColor="white"
           type="number"
           id="weight"
           {...register('weight', {
@@ -180,8 +183,14 @@ export const BaseInfoForm = () => {
           Wybierz przynajmniej jedną rzecz
         </Text>
       )}
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
-        Sprawdź
+      <Button
+        mt={4}
+        bgColor="#a04d35"
+        color="white"
+        isLoading={isSubmitting}
+        type="submit"
+      >
+        Sprawdź!
       </Button>
     </form>
   );
