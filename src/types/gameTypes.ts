@@ -6,6 +6,7 @@ export interface ProfitGainerVals {
 
 export interface CompostableQuizQuestion {
   itemName: string;
-  itemImage: string;
+  // eslint-disable-next-line no-undef
+  itemIcon: JSX.Element;
   isCompostable: boolean;
 }
