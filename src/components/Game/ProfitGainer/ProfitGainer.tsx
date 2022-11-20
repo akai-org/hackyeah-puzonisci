@@ -100,7 +100,6 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
           x{amount}
         </Text>
       </Stack>
-      asdasdsad
       <Card
         direction={{ base: 'column', sm: 'row' }}
         overflow="hidden"
@@ -109,6 +108,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       >
         <Stack>
           <Progress
+            cursor="pointer"
             height="32px"
             // * 100%
             value={(internalVertilizer / internalVals.requiredAmount) * 100}
@@ -144,7 +144,6 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   ) : money >= cost ? (
     <div className={styles.someWrapper}>
       <Text className={styles.centeredText}>Kup za {cost}zł</Text>
-      12312312
       <Stack
         className={styles.toBuyCard}
         onClick={() => {
@@ -168,6 +167,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
         >
           <Stack>
             <Progress
+              cursor="pointer"
               height="32px"
               // * 100%
               value={(internalVertilizer / internalVals.requiredAmount) * 100}
@@ -217,6 +217,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       >
         <Stack>
           <Progress
+            cursor="pointer"
             height="32px"
             // * 100%
             value={(internalVertilizer / internalVals.requiredAmount) * 100}
