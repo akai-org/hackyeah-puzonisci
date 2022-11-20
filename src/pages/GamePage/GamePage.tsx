@@ -185,8 +185,9 @@ export const GamePage = () => {
                 onClick={transferVertilizer}
                 className={styles.transferVertilizer}
                 id="twoja-stara"
+                color="white"
               >
-                Transfer to money
+                Sprzedaj kompost
               </Button>
               <Text className={styles.moneyDisplay}>{money}zł</Text>
             </section>
