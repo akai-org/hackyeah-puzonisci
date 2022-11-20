@@ -122,6 +122,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
                 updateMoney((money) => money - upgradeCost);
                 setUpgradeCost((cost) => cost * 5);
                 setSpeed((speed) => speed * 1.4);
+                setAmount((amount) => amount + 1);
               }}
               minWidth="200px"
               disabled={money < upgradeCost}
@@ -135,7 +136,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               onClick={(e) => turnOnAutoClick(e)}
               minWidth="200px"
             >
-              Upgrade ({autoClickCost}zł)
+              auto ({autoClickCost}zł)
             </Button>
           </Stack>
         </Stack>
@@ -172,7 +173,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               // * 100%
               value={(internalVertilizer / internalVals.requiredAmount) * 100}
             />
-            <Stack direction="row">
+            <Stack style={{ pointerEvents: 'none' }} direction="row">
               <Button
                 className={styles.profitButton}
                 colorScheme="blue"
