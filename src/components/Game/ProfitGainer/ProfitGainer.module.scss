@@ -44,3 +44,13 @@
 .iconAmountStack {
   margin-right: 2rem
 }
+
+.lockedCard {
+  user-select: none;
+  filter: blur(1.5px) grayscale(70%);
+}
+
+.toBuyCard {
+    user-select: none;
+    filter: blur(1.5px) grayscale(70%);
+}
