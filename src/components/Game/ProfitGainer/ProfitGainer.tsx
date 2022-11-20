@@ -100,6 +100,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
           x{amount}
         </Text>
       </Stack>
+      asdasdsad
       <Card
         direction={{ base: 'column', sm: 'row' }}
         overflow="hidden"
@@ -123,6 +124,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
                 setSpeed((speed) => speed * 1.4);
                 setAmount((amount) => amount + 1);
               }}
+              minWidth="200px"
               disabled={money < upgradeCost}
             >
               Upgrade {upgradeCost}zł
@@ -132,6 +134,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               colorScheme="purple"
               disabled={autoClick || money < autoClickCost}
               onClick={(e) => turnOnAutoClick(e)}
+              minWidth="200px"
             >
               auto ({autoClickCost}zł)
             </Button>
@@ -142,6 +145,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   ) : money >= cost ? (
     <div className={styles.someWrapper}>
       <Text className={styles.centeredText}>Kup za {cost}zł</Text>
+      12312312
       <Stack
         className={styles.toBuyCard}
         onClick={() => {
@@ -175,6 +179,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
                 colorScheme="blue"
                 onClick={(e) => {}}
                 disabled
+                minWidth="200px"
               >
                 Upgrade {upgradeCost}zł
               </Button>
@@ -183,6 +188,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
                 colorScheme="purple"
                 disabled
                 onClick={(e) => {}}
+                minWidth="200px"
               >
                 Upgrade ({autoClickCost}zł)
               </Button>
@@ -222,6 +228,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               colorScheme="blue"
               onClick={(e) => {}}
               disabled
+              minWidth="200px"
             >
               Upgrade {upgradeCost}zł
             </Button>
@@ -230,6 +237,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               colorScheme="purple"
               disabled
               onClick={(e) => {}}
+              minWidth="200px"
             >
               Upgrade ({autoClickCost}zł)
             </Button>
