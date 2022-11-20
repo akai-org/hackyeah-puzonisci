@@ -2,22 +2,15 @@ import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
-  HStack,
   Link,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
   Stack,
+  Image,
+  Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIsMobile } from '../../../hooks';
 
 const Links = [
@@ -35,15 +28,14 @@ const NavLink = ({ children, to }: { children: ReactNode; to: string }) => {
       px={2}
       py={1}
       rounded={'md'}
+      lineHeight="30px"
+      height="40px"
+      my="15px"
       _hover={{
         textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
+        bg: '#f6af90',
       }}
-      bgColor={
-        location.pathname.includes(to) && !isMobile
-          ? useColorModeValue('gray.200', 'gray.700')
-          : 'none'
-      }
+      bgColor={location.pathname.includes(to) && !isMobile ? '#f6af90' : 'none'}
       mr="5px"
       href={to}
     >
@@ -58,7 +50,7 @@ export const NavBar = () => {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg="white" px={4} py="10px">
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -73,7 +65,22 @@ export const NavBar = () => {
               lineHeight="32px"
               justifyContent="center"
             >
-              Logo
+              <Image
+                mt="2px"
+                height="65px"
+                width="65px"
+                lineHeight="50px"
+                src="../../../../public/logo.svg"
+                alt={'dupa'}
+              />
+              <Text
+                fontSize={isMobile ? '30px' : '40px'}
+                ml="10px"
+                lineHeight="60px"
+                fontWeight="bold"
+              >
+                Kompostujemy
+              </Text>
             </Flex>
             {!isMobile && (
               <Flex>

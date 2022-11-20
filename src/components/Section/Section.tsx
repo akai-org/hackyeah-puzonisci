@@ -17,7 +17,7 @@ export const Section: FC<SectionProps> = ({ title, content, isEven }) => {
       textAlign="center"
       direction="column"
       py="30px"
-      bgColor={isEven ? 'lightGray' : 'white'}
+      bgColor={isEven ? '#f6af90' : 'white'}
       px={isMobile ? '20px' : '300px'}
     >
       <Text
