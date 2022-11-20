@@ -143,7 +143,10 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       <Text className={styles.centeredText}>Kup za {cost}zł</Text>
       <Stack
         className={styles.toBuyCard}
-        onClick={() => {}}
+        onClick={() => {
+          setIsBoughtState(true);
+          updateMoney((money) => money - cost);
+        }}
         direction="row"
         alignItems="center"
       >
