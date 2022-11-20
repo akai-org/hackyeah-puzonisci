@@ -35,6 +35,8 @@
 
   &:first-of-type {
     border-bottom-right-radius: 0;
+    display: flex;
+    flex: 1;
   }
   &:last-of-type {
     border-bottom-left-radius: 0;
