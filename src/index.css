@@ -31,4 +31,5 @@ body {
 
 div[role="progressbar"], #twoja-stara {
   background-color: #895335!important;
+  color: white!important;
 }
