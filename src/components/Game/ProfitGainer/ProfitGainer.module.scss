@@ -61,6 +61,7 @@
 .someWrapper {
   position: relative;
   user-select: none;
+  pointer-events: all;
 }
 
 .centeredText {

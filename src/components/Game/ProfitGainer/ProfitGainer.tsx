@@ -143,17 +143,15 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       </Card>
     </Stack>
   ) : money >= cost ? (
-    <div className={styles.someWrapper}>
+    <div
+      className={styles.someWrapper}
+      onClick={() => {
+        setIsBoughtState(true);
+        updateMoney((money) => money - cost);
+      }}
+    >
       <Text className={styles.centeredText}>Kup za {cost}zł</Text>
-      <Stack
-        className={styles.toBuyCard}
-        onClick={() => {
-          setIsBoughtState(true);
-          updateMoney((money) => money - cost);
-        }}
-        direction="row"
-        alignItems="center"
-      >
+      <Stack className={styles.toBuyCard} direction="row" alignItems="center">
         <Stack className={styles.iconAmountStack}>
           <Card className={styles.iconCard}>{icon}</Card>
           <Text fontSize={25} align="center">
@@ -175,6 +173,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
             />
             <Stack style={{ pointerEvents: 'none' }} direction="row">
               <Button
+                style={{ pointerEvents: 'none' }}
                 className={styles.profitButton}
                 colorScheme="blue"
                 onClick={(e) => {}}
@@ -184,6 +183,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
                 Upgrade {upgradeCost}zł
               </Button>
               <Button
+                style={{ pointerEvents: 'none' }}
                 className={styles.profitButton}
                 colorScheme="purple"
                 disabled
