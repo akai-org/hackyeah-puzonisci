@@ -4,6 +4,8 @@
 .mainGameCard {
   width: 90%;
   min-height: 70vh;
+  margin-top: 4rem;
+  padding-bottom: 2rem;
 }
 
 .gameWrapper {
@@ -26,6 +28,7 @@
   display: flex;
   justify-content: space-between;
   min-width: 700px;
+  margin-bottom: 4rem;
 }
 
 .moneyDisplay {

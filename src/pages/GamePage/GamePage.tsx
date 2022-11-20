@@ -18,13 +18,19 @@ import {
   ProfitGainer,
   ProfitGainerProps,
 } from '../../components/Game/ProfitGainer/ProfitGainer';
-import bezi from '../../../public/bezi.jpg';
-import kiepski from '../../../public/kiepski.webp';
 import kaczynski from '../../../public/kaczynski.jpg';
 import full from '../../../public/full.jpeg';
 import { CompostableQuizQuestion } from '../../types/gameTypes';
 import pawel from '../../../public/pawel.webp';
 import { shuffle } from 'lodash';
+import {
+  GiCarrot,
+  GiLightningBranches,
+  IoEggOutline,
+  IoLeafSharp,
+  RiFilePaper2Line,
+  SiGitea,
+} from 'react-icons/all';
 
 const moneyPerVertilizer = 1;
 const quizPoints = 10000;
@@ -56,7 +62,8 @@ export const GamePage = () => {
 
   const gainers: ProfitGainerProps[] = [
     {
-      img: bezi,
+      name: 'leaf',
+      icon: <IoLeafSharp />,
       autoClickCost: 200000,
       money,
       internalVals: { time: 1000, requiredAmount: 20000 },
@@ -69,7 +76,60 @@ export const GamePage = () => {
       setIsModalOpen,
     },
     {
-      img: kiepski,
+      name: 'branch',
+      icon: <GiLightningBranches />,
+      autoClickCost: 200000,
+      money,
+      internalVals: { time: 1000, requiredAmount: 500 },
+      updateMoney: setMoney,
+      basicUpgradeCost: 400,
+      updateVertilizer: setVertilizer,
+      cost: 10000,
+      isModalOpen,
+      setIsModalOpen,
+    },
+    {
+      name: 'tea',
+      icon: <SiGitea />,
+      autoClickCost: 200000,
+      money,
+      internalVals: { time: 1000, requiredAmount: 500 },
+      updateMoney: setMoney,
+      basicUpgradeCost: 400,
+      updateVertilizer: setVertilizer,
+      cost: 10000,
+      isModalOpen,
+      setIsModalOpen,
+    },
+    {
+      name: 'carrot',
+      icon: <GiCarrot />,
+      autoClickCost: 200000,
+      money,
+      internalVals: { time: 1000, requiredAmount: 500 },
+      updateMoney: setMoney,
+      basicUpgradeCost: 400,
+      updateVertilizer: setVertilizer,
+      cost: 10000,
+      isModalOpen,
+      setIsModalOpen,
+    },
+    {
+      name: 'paper',
+      icon: <RiFilePaper2Line />,
+      autoClickCost: 200000,
+      money,
+      internalVals: { time: 1000, requiredAmount: 500 },
+      updateMoney: setMoney,
+      basicUpgradeCost: 400,
+      updateVertilizer: setVertilizer,
+      cost: 10000,
+      isModalOpen,
+      setIsModalOpen,
+    },
+    {
+      name: 'egg',
+      icon: <IoEggOutline />,
       autoClickCost: 200000,
       money,
       internalVals: { time: 1000, requiredAmount: 500 },
@@ -126,7 +186,7 @@ export const GamePage = () => {
               className={styles.profitGainers}
             >
               {gainers.map((gainer) => (
-                <ProfitGainer {...gainer} key={gainer.img} />
+                <ProfitGainer {...gainer} key={gainer.name} />
               ))}
             </SimpleGrid>
           </CardBody>

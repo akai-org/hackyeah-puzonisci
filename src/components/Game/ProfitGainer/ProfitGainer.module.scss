@@ -16,3 +16,31 @@
     margin-top: 0!important;
   }
 }
+
+.iconCard {
+  width: 70px!important;
+  height: 70px;
+  border-radius: 50px!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profitButton {
+  &:first-of-type, &:last-of-type {
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &:first-of-type {
+    border-bottom-right-radius: 0;
+  }
+  &:last-of-type {
+    border-bottom-left-radius: 0;
+  }
+}
+
+.iconAmountStack {
+  margin-right: 2rem
+}

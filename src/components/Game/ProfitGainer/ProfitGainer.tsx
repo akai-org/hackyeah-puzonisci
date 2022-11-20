@@ -9,17 +9,18 @@ import {
   MouseEvent,
 } from 'react';
 import {
-  Avatar,
   Button,
   Card,
   CardBody,
   Progress,
   Stack,
+  Text,
 } from '@chakra-ui/react';
 import styles from './ProfitGainer.module.scss';
 
 export interface ProfitGainerProps {
-  img: string;
+  // eslint-disable-next-line no-undef
+  icon: JSX.Element;
   basicUpgradeCost: number;
   updateVertilizer: Dispatch<SetStateAction<number>>;
   internalVals: ProfitGainerVals;
@@ -30,10 +31,11 @@ export interface ProfitGainerProps {
   isBought?: boolean;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  name: string;
 }
 
 export const ProfitGainer: FC<ProfitGainerProps> = ({
-  img,
+  icon,
   updateVertilizer,
   basicUpgradeCost,
   internalVals,
@@ -53,6 +55,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   const [speed, setSpeed] = useState(
     internalVals.requiredAmount / internalVals.time,
   );
+  const [amount, setAmount] = useState(1);
   const autoClickRef = useRef(autoClick);
   const speedRef = useRef(speed);
   const [isBoughtState, setIsBoughtState] = useState(isBought);
@@ -104,40 +107,51 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   };
 
   return isBoughtState ? (
-    <Card
-      direction={{ base: 'column', sm: 'row' }}
-      overflow="hidden"
-      variant="outline"
-      className={styles.card}
-      onClick={progress}
-    >
-      <Avatar size="lg" objectFit="cover" src={img} />
-      <Stack className={styles.stack}>
-        <Progress
-          colorScheme="green"
-          height="32px"
-          // * 100%
-          value={(internalVertilizer / internalVals.requiredAmount) * 100}
-        />
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            updateMoney((money) => money - upgradeCost);
-            setUpgradeCost((cost) => cost * 8);
-            setSpeed((speed) => speed * 2);
-          }}
-          disabled={money < upgradeCost || (isClicked && !autoClick)}
-        >
-          Upgrade {upgradeCost}zł
-        </Button>
+    <Stack onClick={progress} direction="row" alignItems="center">
+      <Stack className={styles.iconAmountStack}>
+        <Card className={styles.iconCard}>{icon}</Card>
+        <Text fontSize={25} align="center">
+          x{amount}
+        </Text>
       </Stack>
-      <Button
-        disabled={autoClick || money < autoClickCost}
-        onClick={(e) => turnOnAutoClick(e)}
+      <Card
+        direction={{ base: 'column', sm: 'row' }}
+        overflow="hidden"
+        variant="unstyled"
+        className={styles.card}
       >
-        Upgrade ({autoClickCost}zł)
-      </Button>
-    </Card>
+        <Stack>
+          <Progress
+            height="32px"
+            // * 100%
+            value={(internalVertilizer / internalVals.requiredAmount) * 100}
+          />
+          <Stack direction="row">
+            <Button
+              className={styles.profitButton}
+              colorScheme="blue"
+              onClick={(e) => {
+                e.stopPropagation();
+                updateMoney((money) => money - upgradeCost);
+                setUpgradeCost((cost) => cost * 8);
+                setSpeed((speed) => speed * 2);
+              }}
+              disabled={money < upgradeCost || (isClicked && !autoClick)}
+            >
+              Upgrade {upgradeCost}zł
+            </Button>
+            <Button
+              className={styles.profitButton}
+              colorScheme="purple"
+              disabled={autoClick || money < autoClickCost}
+              onClick={(e) => turnOnAutoClick(e)}
+            >
+              Upgrade ({autoClickCost}zł)
+            </Button>
+          </Stack>
+        </Stack>
+      </Card>
+    </Stack>
   ) : money >= cost ? (
     <Card>
       <CardBody
