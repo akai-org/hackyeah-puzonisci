@@ -139,51 +139,54 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       </Card>
     </Stack>
   ) : money >= cost ? (
-    <Stack
-      className={styles.toBuyCard}
-      onClick={() => {}}
-      direction="row"
-      alignItems="center"
-    >
-      <Stack className={styles.iconAmountStack}>
-        <Card className={styles.iconCard}>{icon}</Card>
-        <Text fontSize={25} align="center">
-          x{amount}
-        </Text>
-      </Stack>
-      <Card
-        direction={{ base: 'column', sm: 'row' }}
-        overflow="hidden"
-        variant="unstyled"
-        className={styles.card}
+    <div className={styles.someWrapper}>
+      <Text className={styles.centeredText}>Kup za {cost}zł</Text>
+      <Stack
+        className={styles.toBuyCard}
+        onClick={() => {}}
+        direction="row"
+        alignItems="center"
       >
-        <Stack>
-          <Progress
-            height="32px"
-            // * 100%
-            value={(internalVertilizer / internalVals.requiredAmount) * 100}
-          />
-          <Stack direction="row">
-            <Button
-              className={styles.profitButton}
-              colorScheme="blue"
-              onClick={(e) => {}}
-              disabled={money < upgradeCost}
-            >
-              Upgrade {upgradeCost}zł
-            </Button>
-            <Button
-              className={styles.profitButton}
-              colorScheme="purple"
-              disabled={autoClick || money < autoClickCost}
-              onClick={(e) => {}}
-            >
-              Upgrade ({autoClickCost}zł)
-            </Button>
-          </Stack>
+        <Stack className={styles.iconAmountStack}>
+          <Card className={styles.iconCard}>{icon}</Card>
+          <Text fontSize={25} align="center">
+            x{amount}
+          </Text>
         </Stack>
-      </Card>
-    </Stack>
+        <Card
+          direction={{ base: 'column', sm: 'row' }}
+          overflow="hidden"
+          variant="unstyled"
+          className={styles.card}
+        >
+          <Stack>
+            <Progress
+              height="32px"
+              // * 100%
+              value={(internalVertilizer / internalVals.requiredAmount) * 100}
+            />
+            <Stack direction="row">
+              <Button
+                className={styles.profitButton}
+                colorScheme="blue"
+                onClick={(e) => {}}
+                disabled
+              >
+                Upgrade {upgradeCost}zł
+              </Button>
+              <Button
+                className={styles.profitButton}
+                colorScheme="purple"
+                disabled
+                onClick={(e) => {}}
+              >
+                Upgrade ({autoClickCost}zł)
+              </Button>
+            </Stack>
+          </Stack>
+        </Card>
+      </Stack>
+    </div>
   ) : (
     <Stack
       className={styles.lockedCard}
@@ -214,14 +217,14 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               className={styles.profitButton}
               colorScheme="blue"
               onClick={(e) => {}}
-              disabled={money < upgradeCost}
+              disabled
             >
               Upgrade {upgradeCost}zł
             </Button>
             <Button
               className={styles.profitButton}
               colorScheme="purple"
-              disabled={autoClick || money < autoClickCost}
+              disabled
               onClick={(e) => {}}
             >
               Upgrade ({autoClickCost}zł)
