@@ -1,5 +1,6 @@
-import { Section, SectionProps } from '../../components';
+import { Hint, Section, SectionProps } from '../../components';
 import { Box } from '@chakra-ui/react';
+import { BsTruck, TbChartBubble, TbPlant } from 'react-icons/all';
 
 //TODO: Robert fill the sections with real content
 const contentSections: Array<SectionProps> = [
@@ -13,27 +14,28 @@ const contentSections: Array<SectionProps> = [
     title: 'Dlaczego robienie kompostu jest takie ważne?',
     content: (
       <>
-        Kompostowanie pozwala nam dbać o środowisko, ponieważ:
-        <ol style={{ textAlign: 'left' }}>
-          <li>
-            Redukujemy ilość generowanych odpadów przez oraz koszty ich
-            transportu a także zagospodarowania ich - aktywne wdrażanie zasady
-            “zero waste”
-          </li>
-          <li>
-            Zmniejszamy ilość metanu powstającego na składowiskach w wyniku
+        <Hint
+          icon={<BsTruck size={70} />}
+          text="Redukujemy ilość generowanych odpadów oraz koszty ich transportu a
+            także zagospodarowania ich - aktywne wdrażanie zasady “zero waste”"
+        />
+        <Hint
+          mt="20px"
+          icon={<TbChartBubble size={70} />}
+          text="Zmniejszamy ilość metanu powstającego na składowiskach w wyniku
             rozkładających się odpadów, który przyczynia się do globalnego
-            ocieplenia uciekają do atmosfery.
-          </li>
-          <li>
-            pozwala nam to na uzyskanie naturalnego i darmowego nawozu, który
+            ocieplenia uciekają do atmosfery"
+        />
+        <Hint
+          mt="20px"
+          icon={<TbPlant size={140} />}
+          text="Pozwala nam to na uzyskanie naturalnego i darmowego nawozu, który
             jest bezpieczny dla ludzi i środowiska a także korzystanie z niego
             sprawia, że rośliny ogrodowe lepiej rosną, co zwiększa plony,
             ponadto kompost ogranicza rozwój chwastów i wspomaga glebę
             utrzymując wilgoć, pomagając w ten sposób przetrwać okresy suszy,
-            które występują coraz częściej.
-          </li>
-        </ol>
+            które występują coraz częściej"
+        />
       </>
     ),
     isEven: false,
