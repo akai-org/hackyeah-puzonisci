@@ -184,7 +184,7 @@ export const GamePage = () => {
               <Button
                 onClick={transferVertilizer}
                 className={styles.transferVertilizer}
-                colorScheme="green"
+                id="twoja-stara"
               >
                 Transfer to money
               </Button>
