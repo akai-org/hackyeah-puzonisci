@@ -4,7 +4,7 @@ import {
   AiOutlineBug,
   BiBlanket,
   BiBone,
-  BiDrink,
+  SiGitea,
   BsTree,
   BsTruck,
   FaDog,
@@ -77,7 +77,7 @@ const contentSections: Array<SectionProps> = [
             skorupek jajek czy czerstwe pieczywo”"
         />
         <Hint
-          icon={<BiDrink size={60} />}
+          icon={<SiGitea size={60} />}
           mb="20px"
           text="Fusy po kawie/herbacie"
         />
