@@ -34,6 +34,8 @@ const options = [
     isAllowed: true,
   },
   { value: 'Skoszona trawa', label: 'Skoszona trawa', isAllowed: true },
+  { value: 'Resztki warzyw', label: 'Resztki warzyw', isAllowed: true },
+  { value: 'Resztki owoców', label: 'Resztki owoców', isAllowed: true },
   { value: 'Skorupki z jajek', label: 'Skorupki z jajek', isAllowed: true },
   { value: 'Liście', label: 'Liście', isAllowed: true },
   { value: 'Czerstwe pieczywo', label: 'Czerstwe pieczywo', isAllowed: true },
@@ -62,7 +64,7 @@ const options = [
   },
   {
     value: 'Rośliny skażone środkami chemicznymi ',
-    label: 'rośliny skażone środkami chemicznymi',
+    label: 'Rośliny skażone środkami chemicznymi',
     isAllowed: false,
   },
 ];
