@@ -28,10 +28,43 @@ interface Option {
 }
 
 const options = [
-  { value: 'dupa1', label: 'dupa1', isAllowed: true },
-  { value: 'dupa2', label: 'dupa2', isAllowed: true },
-  { value: 'dupa3', label: 'dupa3', isAllowed: false },
-  { value: 'dupa4', label: 'dupa4', isAllowed: false },
+  {
+    value: 'Fusy z kawy/herbaty',
+    label: 'Fusy z kawy/herbaty',
+    isAllowed: true,
+  },
+  { value: 'Skoszona trawa', label: 'Skoszona trawa', isAllowed: true },
+  { value: 'Skorupki z jajek', label: 'Skorupki z jajek', isAllowed: true },
+  { value: 'Liście', label: 'Liście', isAllowed: true },
+  { value: 'Czerstwe pieczywo', label: 'Czerstwe pieczywo', isAllowed: true },
+  { value: 'Gałęzie/kora', label: 'Gałęzie/kora', isAllowed: true },
+  { value: 'Zwiędłe rośliny', label: 'Zwiędłe rośliny', isAllowed: true },
+  { value: 'Pędy roślin', label: 'Pędy roślin', isAllowed: true },
+  { value: 'Popiół', label: 'Popiół', isAllowed: true },
+  { value: 'Obierki', label: 'Obierki', isAllowed: true },
+  { value: 'Całe jajka', label: 'Całe jajka', isAllowed: false },
+  { value: 'Nabiał', label: 'Nabiał', isAllowed: false },
+  { value: 'Mięso', label: 'Mięso', isAllowed: false },
+  { value: 'Kości', label: 'Kości', isAllowed: false },
+  { value: 'Kamienie', label: 'Kamienie', isAllowed: false },
+  { value: 'Odchody zwierzęce', label: 'Odchody zwierzęce', isAllowed: false },
+  { value: 'Plastik', label: 'Plastik', isAllowed: false },
+  { value: 'Szkło', label: 'Szkło', isAllowed: false },
+  { value: 'Metal', label: 'Metal', isAllowed: false },
+  { value: 'Obierki cytrusów', label: 'Obierki cytrusów', isAllowed: false },
+  { value: 'Wędliny', label: 'Wędliny', isAllowed: false },
+  { value: 'Gazety', label: 'Gazety', isAllowed: false },
+  { value: 'Tłuste odpadki', label: 'Tłuste odpadki', isAllowed: false },
+  {
+    value: 'Rośliny zaatakowane przez pasożyty',
+    label: 'Rośliny zaatakowane przez pasożyty',
+    isAllowed: false,
+  },
+  {
+    value: 'Rośliny skażone środkami chemicznymi ',
+    label: 'rośliny skażone środkami chemicznymi',
+    isAllowed: false,
+  },
 ];
 
 export const BaseInfoForm = () => {
