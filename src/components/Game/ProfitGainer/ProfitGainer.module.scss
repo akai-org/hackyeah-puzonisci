@@ -71,3 +71,11 @@
   transform: translate(-50%, -50%);
   z-index: 10000000;
 }
+
+.rel {
+  position: relative;
+}
+
+.blur {
+  filter: blur(1.5px);
+}

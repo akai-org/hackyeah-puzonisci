@@ -8,7 +8,7 @@ import {
   useState,
   MouseEvent,
 } from 'react';
-import { Button, Card, Progress, Stack, Text } from '@chakra-ui/react';
+import { Button, Card, Progress, Stack, Text, Tooltip } from '@chakra-ui/react';
 import styles from './ProfitGainer.module.scss';
 
 export interface ProfitGainerProps {
@@ -35,6 +35,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   autoClickCost,
   cost,
   isBought = false,
+  name,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [internalVertilizer, setInternalVertilizer] = useState(0);
@@ -48,6 +49,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   const autoClickRef = useRef(autoClick);
   const speedRef = useRef(speed);
   const [isBoughtState, setIsBoughtState] = useState(isBought);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(true);
 
   const vertilizerRef = useRef(internalVertilizer);
   const intervalRef = useRef(inter);
@@ -60,6 +62,7 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   });
 
   const progress = () => {
+    setIsTooltipOpen(false);
     if (isClicked) return;
 
     setIsClicked(true);
@@ -93,55 +96,73 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
   };
 
   return isBoughtState ? (
-    <Stack onClick={progress} direction="row" alignItems="center">
-      <Stack className={styles.iconAmountStack}>
-        <Card className={styles.iconCard}>{icon}</Card>
-        <Text fontSize={25} align="center">
-          x{amount}
+    <div className={styles.someWrapper} onClick={progress}>
+      {cost === 0 && isTooltipOpen ? (
+        <Text
+          style={{ cursor: 'pointer', textAlign: 'center' }}
+          className={styles.centeredText}
+        >
+          Kliknij mnie!
         </Text>
-      </Stack>
-      <Card
-        direction={{ base: 'column', sm: 'row' }}
-        overflow="hidden"
-        variant="unstyled"
-        className={styles.card}
+      ) : null}
+      <Stack
+        direction="row"
+        alignItems="center"
+        className={[styles.rel, isTooltipOpen ? styles.blur : ''].join(' ')}
       >
-        <Stack>
-          <Progress
-            cursor="pointer"
-            height="32px"
-            // * 100%
-            value={(internalVertilizer / internalVals.requiredAmount) * 100}
-          />
-          <Stack direction="row">
-            <Button
-              className={styles.profitButton}
-              colorScheme="blue"
-              onClick={(e) => {
-                e.stopPropagation();
-                updateMoney((money) => money - upgradeCost);
-                setUpgradeCost((cost) => cost * 5);
-                setSpeed((speed) => speed * 1.4);
-                setAmount((amount) => amount + 1);
-              }}
-              minWidth="200px"
-              disabled={money < upgradeCost}
-            >
-              Upgrade {upgradeCost}zł
-            </Button>
-            <Button
-              className={styles.profitButton}
-              colorScheme="purple"
-              disabled={autoClick || money < autoClickCost}
-              onClick={(e) => turnOnAutoClick(e)}
-              minWidth="200px"
-            >
-              auto ({autoClickCost}zł)
-            </Button>
-          </Stack>
+        <Stack className={styles.iconAmountStack}>
+          <Card className={styles.iconCard}>
+            <Tooltip label={name}>
+              <span>{icon}</span>
+            </Tooltip>
+          </Card>
+          <Text fontSize={25} align="center">
+            x{amount}
+          </Text>
         </Stack>
-      </Card>
-    </Stack>
+        <Card
+          direction={{ base: 'column', sm: 'row' }}
+          overflow="hidden"
+          variant="unstyled"
+          className={styles.card}
+        >
+          <Stack>
+            <Progress
+              cursor="pointer"
+              height="32px"
+              // * 100%
+              value={(internalVertilizer / internalVals.requiredAmount) * 100}
+            />
+            <Stack direction="row">
+              <Button
+                className={styles.profitButton}
+                colorScheme="blue"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateMoney((money) => money - upgradeCost);
+                  setUpgradeCost((cost) => cost * 5);
+                  setSpeed((speed) => speed * 1.4);
+                  setAmount((amount) => amount + 1);
+                }}
+                minWidth="200px"
+                disabled={money < upgradeCost}
+              >
+                Upgrade {upgradeCost}zł
+              </Button>
+              <Button
+                className={styles.profitButton}
+                colorScheme="purple"
+                disabled={autoClick || money < autoClickCost}
+                onClick={(e) => turnOnAutoClick(e)}
+                minWidth="200px"
+              >
+                auto ({autoClickCost}zł)
+              </Button>
+            </Stack>
+          </Stack>
+        </Card>
+      </Stack>
+    </div>
   ) : money >= cost ? (
     <div
       className={styles.someWrapper}
@@ -153,7 +174,11 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       <Text className={styles.centeredText}>Kup za {cost}zł</Text>
       <Stack className={styles.toBuyCard} direction="row" alignItems="center">
         <Stack className={styles.iconAmountStack}>
-          <Card className={styles.iconCard}>{icon}</Card>
+          <Card className={styles.iconCard}>
+            <Tooltip label={name}>
+              <span>{icon}</span>
+            </Tooltip>
+          </Card>
           <Text fontSize={25} align="center">
             x{amount}
           </Text>
@@ -205,7 +230,11 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
       alignItems="center"
     >
       <Stack className={styles.iconAmountStack}>
-        <Card className={styles.iconCard}>{icon}</Card>
+        <Card className={styles.iconCard}>
+          <Tooltip label={name}>
+            <span>{icon}</span>
+          </Tooltip>
+        </Card>
         <Text fontSize={25} align="center">
           x{amount}
         </Text>

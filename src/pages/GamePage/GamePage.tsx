@@ -77,20 +77,20 @@ export const GamePage = () => {
   };
 
   const gainers: ProfitGainerProps[] = [
+    // {
+    //   name: 'liść',
+    //   icon: <IoLeafSharp />,
+    //   autoClickCost: 200,
+    //   money,
+    //   internalVals: { time: 100, requiredAmount: 50 },
+    //   updateMoney: setMoney,
+    //   basicUpgradeCost: 10,
+    //   updateVertilizer: setVertilizer,
+    //   cost: 0,
+    //   isBought: true,
+    // },
     {
-      name: 'leaf',
-      icon: <IoLeafSharp />,
-      autoClickCost: 200,
-      money,
-      internalVals: { time: 100, requiredAmount: 50 },
-      updateMoney: setMoney,
-      basicUpgradeCost: 10,
-      updateVertilizer: setVertilizer,
-      cost: 0,
-      isBought: true,
-    },
-    {
-      name: 'branch',
+      name: 'gałąź',
       icon: <GiLightningBranches />,
       autoClickCost: 500,
       money,
@@ -101,7 +101,7 @@ export const GamePage = () => {
       cost: 150,
     },
     {
-      name: 'tea',
+      name: 'fusy z herbaty',
       icon: <SiGitea />,
       autoClickCost: 1500,
       money,
@@ -112,7 +112,7 @@ export const GamePage = () => {
       cost: 500,
     },
     {
-      name: 'carrot',
+      name: 'obierki',
       icon: <GiCarrot />,
       autoClickCost: 5000,
       money,
@@ -123,7 +123,7 @@ export const GamePage = () => {
       cost: 2500,
     },
     {
-      name: 'paper',
+      name: 'papier',
       icon: <RiFilePaper2Line />,
       autoClickCost: 10000,
       money,
@@ -134,7 +134,7 @@ export const GamePage = () => {
       cost: 5000,
     },
     {
-      name: 'egg',
+      name: 'skorópka jajka',
       icon: <IoEggOutline />,
       autoClickCost: 15000,
       money,
@@ -172,7 +172,18 @@ export const GamePage = () => {
       setInterval(Math.random() * 100000);
     }, intervalRef.current);
   }, [interval]);
-
+  // {
+  //   name: 'liść',
+  //   icon: <IoLeafSharp />,
+  //   autoClickCost: 200,
+  //   money,
+  //   internalVals: { time: 100, requiredAmount: 50 },
+  //   updateMoney: setMoney,
+  //   basicUpgradeCost: 10,
+  //   updateVertilizer: setVertilizer,
+  //   cost: 0,
+  //   isBought: true,
+  // },
   return (
     <>
       <main className={styles.gameWrapper}>
@@ -197,6 +208,18 @@ export const GamePage = () => {
               spacing={3}
               className={styles.profitGainers}
             >
+              <ProfitGainer
+                autoClickCost={200}
+                basicUpgradeCost={10}
+                cost={0}
+                updateMoney={setMoney}
+                money={money}
+                icon={<IoLeafSharp fontSize={50} />}
+                internalVals={{ time: 100, requiredAmount: 50 }}
+                name="liście"
+                updateVertilizer={setVertilizer}
+                isBought={true}
+              />
               {gainers.map((gainer) => (
                 <ProfitGainer {...gainer} key={gainer.name} />
               ))}
