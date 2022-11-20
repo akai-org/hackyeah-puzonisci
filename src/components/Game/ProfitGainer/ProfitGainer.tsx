@@ -72,7 +72,8 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
 
   const progress = () => {
     if (isClicked) return;
-    if (Math.random() < 0.05 / speed && !isModalOpen) {
+    const scale = speed < 1 ? Math.pow(speed, -1) : speed;
+    if (Math.random() < 0.05 / scale && !isModalOpen) {
       setIsModalOpen(true);
     }
 
@@ -133,10 +134,10 @@ export const ProfitGainer: FC<ProfitGainerProps> = ({
               onClick={(e) => {
                 e.stopPropagation();
                 updateMoney((money) => money - upgradeCost);
-                setUpgradeCost((cost) => cost * 8);
+                setUpgradeCost((cost) => cost * 5);
                 setSpeed((speed) => speed * 2);
               }}
-              disabled={money < upgradeCost || (isClicked && !autoClick)}
+              disabled={money < upgradeCost}
             >
               Upgrade {upgradeCost}zł
             </Button>

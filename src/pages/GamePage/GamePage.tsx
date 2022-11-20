@@ -32,8 +32,8 @@ import {
   SiGitea,
 } from 'react-icons/all';
 
-const moneyPerVertilizer = 1;
-const quizPoints = 10000;
+const moneyPerVertilizer = 0.4;
+const quizPoints = 500;
 
 const questions: CompostableQuizQuestion[] = [
   { isCompostable: true, itemName: 'Kaczyński', itemImage: kaczynski },
@@ -42,7 +42,7 @@ const questions: CompostableQuizQuestion[] = [
 ];
 
 export const GamePage = () => {
-  const [vertilizer, setVertilizer] = useState(1000);
+  const [vertilizer, setVertilizer] = useState(0);
   const [money, setMoney] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState<
@@ -64,11 +64,11 @@ export const GamePage = () => {
     {
       name: 'leaf',
       icon: <IoLeafSharp />,
-      autoClickCost: 200000,
+      autoClickCost: 1000,
       money,
-      internalVals: { time: 1000, requiredAmount: 20000 },
+      internalVals: { time: 1000, requiredAmount: 50 },
       updateMoney: setMoney,
-      basicUpgradeCost: 400,
+      basicUpgradeCost: 10,
       updateVertilizer: setVertilizer,
       cost: 0,
       isBought: true,
@@ -80,11 +80,11 @@ export const GamePage = () => {
       icon: <GiLightningBranches />,
       autoClickCost: 200000,
       money,
-      internalVals: { time: 1000, requiredAmount: 500 },
+      internalVals: { time: 1000, requiredAmount: 800 },
       updateMoney: setMoney,
-      basicUpgradeCost: 400,
+      basicUpgradeCost: 20,
       updateVertilizer: setVertilizer,
-      cost: 10000,
+      cost: 900,
       isModalOpen,
       setIsModalOpen,
     },
