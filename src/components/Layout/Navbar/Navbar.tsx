@@ -70,7 +70,7 @@ export const NavBar = () => {
                 height="65px"
                 width="65px"
                 lineHeight="50px"
-                src="../../../../public/logo.svg"
+                src="/logo.svg"
                 alt={'dupa'}
               />
               <Text
