@@ -35,14 +35,14 @@ const contentSections: Array<SectionProps> = [
           icon={<BsTruck size={70} />}
           mb="20px"
           text="Redukujemy ilość generowanych odpadów oraz koszty ich transportu a
-            także zagospodarowania ich - aktywne wdrażanie zasady “zero waste”"
+            także zagospodarowania ich - aktywne wdrażanie zasady “zero waste”."
         />
         <Hint
           mb="20px"
           icon={<TbChartBubble size={70} />}
           text="Zmniejszamy ilość metanu powstającego na składowiskach w wyniku
             rozkładających się odpadów, który przyczynia się do globalnego
-            ocieplenia uciekają do atmosfery"
+            ocieplenia uciekają do atmosfery."
         />
         <Hint
           mb="10px"
@@ -58,7 +58,7 @@ const contentSections: Array<SectionProps> = [
   {
     title: 'Czy robienie kompostu jest trudne?',
     content:
-      'Wytwarzanie kompostu jest łatwe i nie wymaga specjalistycznej wiedzy, a założenie kompostownika możliwe jest nie tylko w ogrodzie, ale również w domu czy na balkonie. Kompostownik można zbudować samodzielnie lub zakupić gotową konstrukcję. Tworząc domowy kompostownik musimy zwrócić uwagę na to, co wkładamy do środka, aby finalny produkt nadawał się do użytku. Należy jednak podkreślić, że prawidłowo konserwowany kompostownik nie wydziela żadnego zapachu',
+      'Wytwarzanie kompostu jest łatwe i nie wymaga specjalistycznej wiedzy, a założenie kompostownika możliwe jest nie tylko w ogrodzie, ale również w domu czy na balkonie. Kompostownik można zbudować samodzielnie lub zakupić gotową konstrukcję. Tworząc domowy kompostownik musimy zwrócić uwagę na to, co wkładamy do środka, aby finalny produkt nadawał się do użytku. Należy jednak podkreślić, że prawidłowo konserwowany kompostownik nie wydziela żadnego zapachu.',
     isEven: true,
   },
   {
